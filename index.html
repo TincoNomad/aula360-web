@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula360 — Expedientes Técnicos de Ingeniería</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #111827;
+      background: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo-mark {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; background: #1d4ed8;
+      color: #fff; font-size: .875rem; font-weight: 700; border-radius: 6px;
+    }
+    .nav-cta {
+      font-size: .875rem; font-weight: 600;
+      padding: 8px 20px; border-radius: 8px;
+      background: #1d4ed8; color: #fff; transition: background .2s;
+    }
+    .nav-cta:hover { background: #1e40af; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 600; font-size: .9375rem;
+      padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .btn-primary {
+      background: #1d4ed8; color: #fff;
+    }
+    .btn-primary:hover { background: #1e40af; }
+    .btn-outline {
+      background: transparent; color: #1d4ed8;
+      border: 1px solid #1d4ed8;
+    }
+    .btn-outline:hover { background: #f0f5ff; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    section + section { padding-top: 0; }
+    .section-title {
+      font-size: 1.875rem; font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      color: #6b7280; font-size: 1.0625rem; max-width: 560px;
+    }
+    .section-label {
+      font-size: .8125rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .06em; color: #1d4ed8; margin-bottom: 8px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 96px 0 80px;
+      display: grid; gap: 48px;
+    }
+    @media (min-width: 768px) {
+      .hero { grid-template-columns: 1fr 1fr; align-items: center; padding: 120px 0 80px; }
+    }
+    .hero h1 {
+      font-size: 2.5rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 768px) { .hero h1 { font-size: 3.25rem; } }
+    .hero p {
+      color: #6b7280; font-size: 1.125rem; margin-bottom: 32px; max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-image {
+      width: 100%; aspect-ratio: 4 / 3; border-radius: 12px;
+      background: #e5e7eb; display: flex; align-items: center; justify-content: center;
+      color: #9ca3af; font-size: .875rem; font-weight: 500; text-align: center;
+      padding: 24px;
+    }
+
+    /* Value Props */
+    .props-grid {
+      display: grid; gap: 32px;
+    }
+    @media (min-width: 640px) { .props-grid { grid-template-columns: repeat(3, 1fr); } }
+    .prop-card {
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px 24px;
+    }
+    .prop-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: #e5e7eb; display: flex; align-items: center; justify-content: center;
+      color: #9ca3af; font-size: .75rem; font-weight: 500; text-align: center;
+      margin-bottom: 20px;
+    }
+    .prop-card h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 8px; }
+    .prop-card p { color: #6b7280; font-size: .9375rem; }
+
+    /* Products */
+    .products-header { margin-bottom: 40px; }
+    .products-header .section-sub { max-width: 480px; }
+    .products-grid {
+      display: grid; gap: 24px;
+    }
+    @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+    .product-card {
+      border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .product-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,.06); }
+    .product-img {
+      width: 100%; aspect-ratio: 3 / 2;
+      background: #e5e7eb; display: flex; align-items: center; justify-content: center;
+      color: #9ca3af; font-size: .8125rem; font-weight: 500; text-align: center;
+      padding: 20px;
+    }
+    .product-body { padding: 20px 24px 24px; }
+    .product-body h3 { font-size: 1.0625rem; font-weight: 600; margin-bottom: 6px; }
+    .product-body p { color: #6b7280; font-size: .875rem; margin-bottom: 16px; }
+    .product-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .product-price { font-size: 1.25rem; font-weight: 700; }
+    .product-btn {
+      font-size: .875rem; font-weight: 600; padding: 8px 18px;
+      background: #1d4ed8; color: #fff; border: none; border-radius: 8px; cursor: pointer;
+      transition: background .2s;
+    }
+    .product-btn:hover { background: #1e40af; }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid; gap: 24px;
+    }
+    @media (min-width: 640px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+    .testimonial-card {
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px;
+    }
+    .testimonial-text { color: #374151; font-size: .9375rem; margin-bottom: 20px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%; background: #e5e7eb;
+      display: flex; align-items: center; justify-content: center;
+      color: #9ca3af; font-size: .6875rem; font-weight: 500; text-align: center;
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-weight: 600; font-size: .9375rem; }
+    .testimonial-role { color: #6b7280; font-size: .8125rem; }
+
+    /* CTA */
+    .cta-section { text-align: center; }
+    .cta-section h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 12px; }
+    .cta-section p { color: #6b7280; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #e5e7eb; padding: 48px 0 32px;
+      color: #6b7280; font-size: .875rem;
+    }
+    footer .container {
+      display: grid; gap: 32px;
+    }
+    @media (min-width: 640px) { footer .container { grid-template-columns: 2fr 1fr 1fr; } }
+    footer h4 { color: #111827; font-weight: 600; margin-bottom: 12px; font-size: .9375rem; }
+    footer p { line-height: 1.7; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 8px; }
+    footer a:hover { color: #1d4ed8; }
+    .footer-bottom {
+      border-top: 1px solid #e5e7eb; margin-top: 32px; padding-top: 24px;
+      text-align: center; font-size: .8125rem;
+    }
+
+    /* Alt section bg */
+    .section-alt { background: #f8fafc; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">
+        <span class="logo-mark">A3</span>
+        Aula360
+      </a>
+      <a href="#" class="nav-cta">Solicitar expediente</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section>
+    <div class="container hero">
+      <div>
+        <p class="section-label">Expedientes técnicos profesionales</p>
+        <h1>Documentación técnica de ingeniería, lista para descargar</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">Ver catálogo</a>
+          <a href="#" class="btn btn-outline">Solicitar cotización</a>
+        </div>
+      </div>
+      <div class="hero-image">IMAGEN: Portada o muestra de expediente técnico de ingeniería (vista previa del producto)</div>
+    </div>
+  </section>
+
+  <!-- Value Props -->
+  <section class="section-alt">
+    <div class="container">
+      <p class="section-label">Por qué Aula360</p>
+      <h2 class="section-title">Expedientes que cumplen</h2>
+      <p class="section-sub" style="margin-bottom:40px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+      <div class="props-grid">
+        <article class="prop-card">
+          <div class="prop-icon">IMAGEN: Icono de documento / certificación</div>
+          <h3>Elaborados por especialistas</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </article>
+        <article class="prop-card">
+          <div class="prop-icon">IMAGEN: Icono de descarga / entrega inmediata</div>
+          <h3>Descarga inmediata en PDF</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </article>
+        <article class="prop-card">
+          <div class="prop-icon">IMAGEN: Icono de escudo / respaldo legal</div>
+          <h3>Cumplimiento normativo</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section>
+    <div class="container">
+      <div class="products-header">
+        <p class="section-label">Catálogo</p>
+        <h2 class="section-title">Expedientes disponibles</h2>
+        <p class="section-sub">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+      </div>
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="product-img">IMAGEN: Portada del expediente — Estructuras metálicas</div>
+          <div class="product-body">
+            <h3>Expediente de estructuras metálicas</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+            <div class="product-footer">
+              <span class="product-price">S/ 120</span>
+              <button class="product-btn">Comprar</button>
+            </div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-img">IMAGEN: Portada del expediente — Instalaciones eléctricas</div>
+          <div class="product-body">
+            <h3>Expediente de instalaciones eléctricas</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+            <div class="product-footer">
+              <span class="product-price">S/ 150</span>
+              <button class="product-btn">Comprar</button>
+            </div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-img">IMAGEN: Portada del expediente — Sistemas sanitarios</div>
+          <div class="product-body">
+            <h3>Expediente de sistemas sanitarios</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+            <div class="product-footer">
+              <span class="product-price">S/ 130</span>
+              <button class="product-btn">Comprar</button>
+            </div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-img">IMAGEN: Portada del expediente — Concreto armado</div>
+          <div class="product-body">
+            <h3>Expediente de concreto armado</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+            <div class="product-footer">
+              <span class="product-price">S/ 140</span>
+              <button class="product-btn">Comprar</button>
+            </div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-img">IMAGEN: Portada del expediente — Topografía y suelos</div>
+          <div class="product-body">
+            <h3>Expediente de topografía y suelos</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+            <div class="product-footer">
+              <span class="product-price">S/ 110</span>
+              <button class="product-btn">Comprar</button>
+            </div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-img">IMAGEN: Portada del expediente — Seguridad y salud en obra</div>
+          <div class="product-body">
+            <h3>Expediente de seguridad en obra (SSO)</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+            <div class="product-footer">
+              <span class="product-price">S/ 100</span>
+              <button class="product-btn">Comprar</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section-alt">
+    <div class="container">
+      <p class="section-label">Testimonios</p>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <p class="section-sub" style="margin-bottom:40px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div class="testimonials-grid">
+        <blockquote class="testimonial-card">
+          <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
+          <footer class="testimonial-author">
+            <div class="testimonial-avatar">IMAGEN: Foto de perfil de cliente</div>
+            <div>
+              <div class="testimonial-name">Ing. Carlos Mendoza</div>
+              <div class="testimonial-role">Proyectista estructural</div>
+            </div>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial-card">
+          <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
+          <footer class="testimonial-author">
+            <div class="testimonial-avatar">IMAGEN: Foto de perfil de cliente</div>
+            <div>
+              <div class="testimonial-name">Arq. Laura Fernández</div>
+              <div class="testimonial-role">Consultora independiente</div>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="container cta-section">
+      <h2>¿No encuentras lo que buscas?</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      <a href="#" class="btn btn-primary">Solicitar expediente a medida</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div>
+        <div class="logo" style="margin-bottom:12px">
+          <span class="logo-mark">A3</span>
+          Aula360
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+      </div>
+      <div>
+        <h4>Productos</h4>
+        <ul>
+          <li><a href="#">Expedientes estructurales</a></li>
+          <li><a href="#">Expedientes eléctricos</a></li>
+          <li><a href="#">Expedientes sanitarios</a></li>
+          <li><a href="#">Ver todos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:contacto@aula360.pe">contacto@aula360.pe</a></li>
+          <li><a href="#">+51 999 999 999</a></li>
+          <li><a href="#">Lima, Perú</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">&copy; 2025 Aula360. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
