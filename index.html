@@ -31,7 +31,7 @@
     }
     nav .container {
       display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
+      height: 72px;
     }
     .logo {
       display: flex; align-items: center;
@@ -167,9 +167,10 @@
     .product-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,.06); }
     .product-img {
       width: 100%; aspect-ratio: 16 / 10;
-      background: #e5e7eb; display: flex; align-items: center; justify-content: center;
-      color: #9ca3af; font-size: .8125rem; font-weight: 500; text-align: center;
-      padding: 20px;
+    }
+    .product-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
     }
     .product-body { padding: 20px 24px 24px; }
     .product-body h3 { font-size: 1.0625rem; font-weight: 600; margin-bottom: 6px; }
@@ -237,7 +238,7 @@
   <nav>
     <div class="container">
       <a href="#" class="logo">
-        <img src="images/lgotipo-10.svg" alt="Aula 360" height="48">
+        <img src="images/lgotipo-10.svg" alt="Aula 360" height="56">
       </a>
       <a href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes" class="nav-wa">Escríbenos por WhatsApp</a>
     </div>
@@ -320,46 +321,46 @@
       </div>
       <div class="products-grid">
         <article class="product-card">
-          <div class="product-img">IMAGEN: Portada del expediente técnico — Hospital</div>
+          <div class="product-img"><img src="images/salud.webp" alt="Expediente Técnico — Centros de Salud"></div>
           <div class="product-body">
-            <h3>🏥 Expediente Técnico — Hospital</h3>
-            <p>Expediente completo para proyectos de centros de salud. Cumple normativa del MINSA y RNE.</p>
+            <h3>🏥 Expediente Técnico — Centros de Salud</h3>
+            <p>Expediente completo para postas, centros de salud y hospitales. Cumple normativa del MINSA y RNE.</p>
             <div class="product-footer">
               <span class="product-price">S/ 18</span>
-              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Hospital" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
+              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Centros%20de%20Salud" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
             </div>
           </div>
         </article>
         <article class="product-card">
-          <div class="product-img">IMAGEN: Portada del expediente técnico — Colegio</div>
+          <div class="product-img"><img src="images/estadios.webp" alt="Expediente Técnico — Obras Deportivas"></div>
           <div class="product-body">
-            <h3>🏫 Expediente Técnico — Colegio</h3>
-            <p>Expediente para instituciones educativas. Incluye aulas, laboratorios y áreas administrativas.</p>
+            <h3>🏟️ Expediente Técnico — Obras Deportivas</h3>
+            <p>Expediente para losas deportivas, complejos recreativos y campos multiusos.</p>
             <div class="product-footer">
               <span class="product-price">S/ 18</span>
-              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Colegio" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
+              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Obras%20Deportivas" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
             </div>
           </div>
         </article>
         <article class="product-card">
-          <div class="product-img">IMAGEN: Portada del expediente técnico — Carretera</div>
+          <div class="product-img"><img src="images/agua.webp" alt="Expediente Técnico — Agua y Desagüe"></div>
           <div class="product-body">
-            <h3>🛣️ Expediente Técnico — Carretera</h3>
-            <p>Expediente para vías y carreteras. Basado en el Manual de Carreteras DG-2018 del MTC.</p>
+            <h3>💧 Expediente Técnico — Agua y Desagüe</h3>
+            <p>Expediente para redes de agua potable y alcantarillado sanitario. Cumple normativa de SEDAPAL y RNE.</p>
             <div class="product-footer">
               <span class="product-price">S/ 18</span>
-              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Carretera" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
+              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Agua%20y%20Desag%C3%BCe" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
             </div>
           </div>
         </article>
         <article class="product-card">
-          <div class="product-img">IMAGEN: Portada del expediente técnico — Eléctrico</div>
+          <div class="product-img"><img src="images/electricas.webp" alt="Expediente Técnico — Instalaciones Eléctricas"></div>
           <div class="product-body">
-            <h3>⚡ Expediente Técnico — Eléctrico</h3>
-            <p>Expediente para sistemas eléctricos. Cumple el Código Nacional de Electricidad (CNE).</p>
+            <h3>⚡ Expediente Técnico — Instalaciones Eléctricas</h3>
+            <p>Expediente para sistemas eléctricos en edificaciones. Cumple el Código Nacional de Electricidad (CNE).</p>
             <div class="product-footer">
               <span class="product-price">S/ 18</span>
-              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20El%C3%A9ctrico" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
+              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Instalaciones%20El%C3%A9ctricas" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
             </div>
           </div>
         </article>
@@ -368,7 +369,7 @@
   </section>
 
   <!-- ¿Qué incluye? -->
-  <section class="section-alt">
+  <section class="section-alt" style="padding-top:80px">
     <div class="container">
       <p class="section-label">Contenido</p>
       <h2 class="section-title">¿Qué incluye cada expediente?</h2>
@@ -441,10 +442,10 @@
       <div>
         <h4>Expedientes</h4>
         <ul>
-          <li><a href="#">Hospital</a></li>
-          <li><a href="#">Colegio</a></li>
-          <li><a href="#">Carretera</a></li>
-          <li><a href="#">Eléctrico</a></li>
+          <li><a href="#">Centros de Salud</a></li>
+          <li><a href="#">Obras Deportivas</a></li>
+          <li><a href="#">Agua y Desagüe</a></li>
+          <li><a href="#">Instalaciones Eléctricas</a></li>
         </ul>
       </div>
       <div>
