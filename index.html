@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="images/lgotipo-10.svg">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -33,20 +34,15 @@
       height: 64px;
     }
     .logo {
-      font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em;
-      display: flex; align-items: center; gap: 8px;
+      display: flex; align-items: center;
     }
-    .logo-mark {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px; background: #1B3A6B;
-      color: #fff; font-size: .75rem; font-weight: 700; border-radius: 6px;
-    }
+    .logo img { display: block; }
     .nav-wa {
       font-size: .875rem; font-weight: 600;
       padding: 8px 20px; border-radius: 8px;
-      background: #00A896; color: #fff; transition: background .2s;
+      background: #2baa6b; color: #fff; transition: background .2s;
     }
-    .nav-wa:hover { background: #008573; }
+    .nav-wa:hover { background: #23905a; }
 
     /* Buttons */
     .btn {
@@ -56,14 +52,18 @@
       transition: background .2s, color .2s;
     }
     .btn-primary {
-      background: #00A896; color: #fff;
+      background: #2b84cb; color: #fff;
     }
-    .btn-primary:hover { background: #008573; }
+    .btn-primary:hover { background: #2470aa; }
+    .btn-wa {
+      background: #2baa6b; color: #fff;
+    }
+    .btn-wa:hover { background: #23905a; }
     .btn-outline {
-      background: transparent; color: #1B3A6B;
-      border: 1px solid #1B3A6B;
+      background: transparent; color: #2b84cb;
+      border: 1px solid #2b84cb;
     }
-    .btn-outline:hover { background: #f0f4fa; }
+    .btn-outline:hover { background: #eef5fa; }
 
     /* Sections */
     section { padding: 80px 0; }
@@ -77,7 +77,7 @@
     }
     .section-label {
       font-size: .8125rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: .06em; color: #1B3A6B; margin-bottom: 8px;
+      letter-spacing: .06em; color: #2b84cb; margin-bottom: 8px;
     }
 
     /* Hero */
@@ -97,12 +97,43 @@
       color: #6b7280; font-size: 1.125rem; margin-bottom: 32px; max-width: 480px;
     }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero-image {
-      width: 100%; aspect-ratio: 4 / 3; border-radius: 12px;
-      background: #e5e7eb; display: flex; align-items: center; justify-content: center;
-      color: #9ca3af; font-size: .875rem; font-weight: 500; text-align: center;
-      padding: 24px;
+
+    /* Carousel */
+    .carousel {
+      position: relative; border-radius: 12px; overflow: hidden;
+      width: 100%; aspect-ratio: 4 / 3; background: #e5e7eb;
     }
+    .carousel-slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity .6s ease; pointer-events: none;
+    }
+    .carousel-slide.active {
+      opacity: 1; pointer-events: auto;
+    }
+    .carousel-slide img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .carousel-btn {
+      position: absolute; top: 50%; translate: 0 -50%;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,.8); border: none; cursor: pointer;
+      font-size: 1.125rem; color: #374151; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .carousel-btn:hover { background: #fff; }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+    .carousel-dots {
+      position: absolute; bottom: 12px; left: 50%; translate: -50% 0;
+      display: flex; gap: 8px; z-index: 2;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.5); border: none; cursor: pointer;
+      transition: background .2s;
+    }
+    .carousel-dot.active { background: #fff; }
 
     /* Value Props */
     .props-grid {
@@ -110,13 +141,15 @@
     }
     @media (min-width: 640px) { .props-grid { grid-template-columns: repeat(3, 1fr); } }
     .prop-card {
-      border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px 24px;
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 0;
+      overflow: hidden;
     }
-    .prop-icon {
-      width: 48px; height: 48px; border-radius: 10px;
-      background: #e5e7eb; display: flex; align-items: center; justify-content: center;
-      color: #9ca3af; font-size: .75rem; font-weight: 500; text-align: center;
-      margin-bottom: 20px;
+    .prop-card > div { padding: 24px; }
+    .prop-img {
+      width: 100%; height: 160px; overflow: hidden; background: #f3f4f6;
+    }
+    .prop-img img {
+      width: 100%; height: 100%; object-fit: cover;
     }
     .prop-card h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 8px; }
     .prop-card p { color: #6b7280; font-size: .9375rem; }
@@ -144,13 +177,7 @@
     .product-footer {
       display: flex; align-items: center; justify-content: space-between;
     }
-    .product-price { font-size: 1.25rem; font-weight: 700; color: #1B3A6B; }
-    .product-btn {
-      font-size: .875rem; font-weight: 600; padding: 8px 18px;
-      background: #00A896; color: #fff; border: none; border-radius: 8px; cursor: pointer;
-      transition: background .2s;
-    }
-    .product-btn:hover { background: #008573; }
+    .product-price { font-size: 1.25rem; font-weight: 700; color: #2b84cb; }
 
     /* Incluye */
     .includes-grid {
@@ -165,8 +192,7 @@
     .include-item:last-of-type { border-bottom: none; }
     .include-check {
       width: 24px; height: 24px; border-radius: 6px;
-      background: #00A896; color: #fff;
-      display: flex; align-items: center; justify-content: center;
+      background: #2baa6b; color: #fff;
       flex-shrink: 0; font-size: .75rem; font-weight: 700;
     }
     .include-item h4 { font-size: .9375rem; font-weight: 600; margin-bottom: 2px; }
@@ -180,8 +206,8 @@
     }
     .cta-section h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 12px; }
     .cta-section p { color: #b0c4de; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
-    .cta-section .btn-primary { background: #00A896; }
-    .cta-section .btn-primary:hover { background: #008573; }
+    .cta-section .btn-wa { background: #2baa6b; }
+    .cta-section .btn-wa:hover { background: #23905a; }
 
     /* Footer */
     footer {
@@ -196,7 +222,7 @@
     footer p { line-height: 1.7; }
     footer ul { list-style: none; }
     footer li { margin-bottom: 8px; }
-    footer a:hover { color: #00A896; }
+    footer a:hover { color: #2baa6b; }
     .footer-bottom {
       border-top: 1px solid #e5e7eb; margin-top: 32px; padding-top: 24px;
       text-align: center; font-size: .8125rem;
@@ -211,10 +237,9 @@
   <nav>
     <div class="container">
       <a href="#" class="logo">
-        <span class="logo-mark">A3</span>
-        Aula 360
+        <img src="images/lgotipo-10.svg" alt="Aula 360" height="48">
       </a>
-      <a href="#" class="nav-wa">Escríbenos por WhatsApp</a>
+      <a href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes" class="nav-wa">Escríbenos por WhatsApp</a>
     </div>
   </nav>
 
@@ -226,11 +251,24 @@
         <h1>Expedientes técnicos para arquitectos e ingenieros</h1>
         <p>Somos Aula 360, una plataforma especializada en herramientas técnicas para arquitectos e ingenieros del Perú. Ponemos a tu disposición expedientes técnicos completos, actualizados y listos para usar. Entrega inmediata por WhatsApp.</p>
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary">Comprar por WhatsApp</a>
-          <a href="#catalogo" class="btn btn-outline">Ver catálogo</a>
+          <a href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes" class="btn btn-wa">Comprar por WhatsApp</a>
+          <!-- <a href="#catalogo" class="btn btn-outline">Ver catálogo</a> -->
         </div>
       </div>
-      <div class="hero-image">IMAGEN: Portada o muestra de expediente técnico (vista previa del producto)</div>
+      <div class="carousel" id="heroCarousel">
+        <div class="carousel-slide active">
+          <img src="images/hero1.webp" alt="Muestra de expediente técnico — vista 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="images/hero2.webp" alt="Muestra de expediente técnico — vista 2">
+        </div>
+        <button class="carousel-btn prev" id="prevBtn">←</button>
+        <button class="carousel-btn next" id="nextBtn">→</button>
+        <div class="carousel-dots">
+          <button class="carousel-dot active" data-index="0"></button>
+          <button class="carousel-dot" data-index="1"></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -242,19 +280,31 @@
       <p class="section-sub" style="margin-bottom:40px">Expedientes completos, normados y listos para descargar. Sin esperas ni trámites.</p>
       <div class="props-grid">
         <article class="prop-card">
-          <div class="prop-icon">IMAGEN: Icono de lista de verificación / documento completo</div>
-          <h3>Completos y listos para usar</h3>
-          <p>Cada expediente incluye memoria descriptiva, especificaciones técnicas, planos, metrados, presupuesto, cronograma y fórmula polinómica. Todo lo que necesitas en un solo archivo.</p>
+          <div class="prop-img">
+            <img src="images/elaborados.webp" alt="Documentos completos y listos para usar">
+          </div>
+          <div>
+            <h3>Completos y listos para usar</h3>
+            <p>Cada expediente incluye memoria descriptiva, especificaciones técnicas, planos, metrados, presupuesto, cronograma y fórmula polinómica. Todo lo que necesitas en un solo archivo.</p>
+          </div>
         </article>
         <article class="prop-card">
-          <div class="prop-icon">IMAGEN: Icono de rayo / entrega inmediata</div>
-          <h3>Entrega inmediata</h3>
-          <p>Recibe tu expediente al instante después del pago. Yape, Plin o transferencia — tú eliges. Sin formularios ni demoras.</p>
+          <div class="prop-img">
+            <img src="images/descarga.webp" alt="Entrega inmediata del expediente">
+          </div>
+          <div>
+            <h3>Entrega inmediata</h3>
+            <p>Recibe tu expediente al instante después del pago. Yape, Plin o transferencia — tú eliges. Sin formularios ni demoras.</p>
+          </div>
         </article>
         <article class="prop-card">
-          <div class="prop-icon">IMAGEN: Icono de escudo / normativa</div>
-          <h3>Cumplimiento normativo</h3>
-          <p>Elaborados considerando el RNE, Manual de Carreteras DG-2018, Código Nacional de Electricidad y directivas de Invierte.pe.</p>
+          <div class="prop-img">
+            <img src="images/cumplimento.webp" alt="Cumplimiento de normativa técnica">
+          </div>
+          <div>
+            <h3>Cumplimiento normativo</h3>
+            <p>Elaborados considerando el RNE, Manual de Carreteras DG-2018, Código Nacional de Electricidad y directivas de Invierte.pe.</p>
+          </div>
         </article>
       </div>
     </div>
@@ -276,7 +326,7 @@
             <p>Expediente completo para proyectos de centros de salud. Cumple normativa del MINSA y RNE.</p>
             <div class="product-footer">
               <span class="product-price">S/ 18</span>
-              <button class="product-btn">Comprar</button>
+              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Hospital" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
             </div>
           </div>
         </article>
@@ -287,7 +337,7 @@
             <p>Expediente para instituciones educativas. Incluye aulas, laboratorios y áreas administrativas.</p>
             <div class="product-footer">
               <span class="product-price">S/ 18</span>
-              <button class="product-btn">Comprar</button>
+              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Colegio" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
             </div>
           </div>
         </article>
@@ -298,7 +348,7 @@
             <p>Expediente para vías y carreteras. Basado en el Manual de Carreteras DG-2018 del MTC.</p>
             <div class="product-footer">
               <span class="product-price">S/ 18</span>
-              <button class="product-btn">Comprar</button>
+              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Carretera" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
             </div>
           </div>
         </article>
@@ -309,7 +359,7 @@
             <p>Expediente para sistemas eléctricos. Cumple el Código Nacional de Electricidad (CNE).</p>
             <div class="product-footer">
               <span class="product-price">S/ 18</span>
-              <button class="product-btn">Comprar</button>
+              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20El%C3%A9ctrico" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
             </div>
           </div>
         </article>
@@ -375,7 +425,7 @@
     <div class="container">
       <h2>¿Listo para empezar tu proyecto?</h2>
       <p>Consigue tu expediente técnico al instante. Escríbenos por WhatsApp y lo recibes en menos de 5 minutos.</p>
-      <a href="#" class="btn btn-primary">Escríbenos por WhatsApp</a>
+      <a href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes" class="btn btn-wa">Escríbenos por WhatsApp</a>
     </div>
   </section>
 
@@ -384,8 +434,7 @@
     <div class="container">
       <div>
         <div class="logo" style="margin-bottom:12px">
-          <span class="logo-mark">A3</span>
-          Aula 360
+          <img src="images/lgotipo-10.svg" alt="Aula 360" height="44">
         </div>
         <p>Plataforma especializada en expedientes técnicos para arquitectos e ingenieros del Perú. Democratizamos el acceso a herramientas técnicas de calidad.</p>
       </div>
@@ -402,7 +451,7 @@
         <h4>Contacto</h4>
         <ul>
           <li><a href="mailto:aula360pe@gmail.com">aula360pe@gmail.com</a></li>
-          <li><a href="#">WhatsApp</a></li>
+          <li><a href="https://wa.me/51982599421">WhatsApp</a></li>
           <li><a href="#">Lima, Perú</a></li>
           <li><span style="color:#9ca3af">Lun — Sáb, 9:00 AM – 7:00 PM</span></li>
         </ul>
@@ -412,6 +461,48 @@
       <div class="container">&copy; 2025 Aula 360. Todos los derechos reservados.</div>
     </div>
   </footer>
+
+  <script>
+    (function() {
+      const slides = document.querySelectorAll('.carousel-slide');
+      const dots = document.querySelectorAll('.carousel-dot');
+      const prev = document.getElementById('prevBtn');
+      const next = document.getElementById('nextBtn');
+      let current = 0;
+      let interval;
+
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function nextSlide() { goTo(current + 1); }
+      function prevSlide() { goTo(current - 1); }
+
+      function startInterval() {
+        interval = setInterval(nextSlide, 4000);
+      }
+      function resetInterval() {
+        clearInterval(interval);
+        startInterval();
+      }
+
+      next.addEventListener('click', function() { nextSlide(); resetInterval(); });
+      prev.addEventListener('click', function() { prevSlide(); resetInterval(); });
+
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          goTo(parseInt(this.dataset.index));
+          resetInterval();
+        });
+      });
+
+      startInterval();
+    })();
+  </script>
 
 </body>
 </html>
