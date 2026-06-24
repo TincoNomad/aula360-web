@@ -215,19 +215,17 @@
       border-top: 1px solid #e5e7eb; padding: 48px 0 32px;
       color: #6b7280; font-size: .875rem;
     }
-    footer .container {
+    .footer-grid {
       display: grid; gap: 32px;
     }
-    @media (min-width: 640px) { footer .container { grid-template-columns: 2fr 1fr 1fr; } }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
     footer h4 { color: #111827; font-weight: 600; margin-bottom: 12px; font-size: .9375rem; }
     footer p { line-height: 1.7; }
     footer ul { list-style: none; }
     footer li { margin-bottom: 8px; }
     footer a:hover { color: #2baa6b; }
-    .footer-bottom {
-      border-top: 1px solid #e5e7eb; margin-top: 32px; padding-top: 24px;
-      text-align: center; font-size: .8125rem;
-    }
+    .footer-bottom { border-top: 1px solid #e5e7eb; margin-top: 32px; padding-top: 24px; text-align: center; font-size: .8125rem; }
+    .footer-bottom a { color: #2b84cb; }
 
     .section-alt { background: #f8fafc; }
   </style>
@@ -432,7 +430,7 @@
 
   <!-- Footer -->
   <footer>
-    <div class="container">
+    <div class="footer-grid container">
       <div>
         <div class="logo" style="margin-bottom:12px">
           <img src="images/lgotipo-10.svg" alt="Aula 360" height="44">
@@ -446,6 +444,13 @@
           <li><a href="#">Obras Deportivas</a></li>
           <li><a href="#">Agua y Desagüe</a></li>
           <li><a href="#">Instalaciones Eléctricas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacidad.html">Privacidad</a></li>
+          <li><a href="terminos.html">Términos</a></li>
         </ul>
       </div>
       <div>
